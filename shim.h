@@ -164,6 +164,7 @@
 #include "include/console.h"
 #include "include/crypt_blowfish.h"
 #include "include/dp.h"
+#include "include/dxe.h"
 #include "include/efiauthenticated.h"
 #include "include/errors.h"
 #include "include/execute.h"
@@ -268,6 +269,8 @@ extern UINT8 user_insecure_mode;
 extern UINT8 ignore_db;
 extern UINT8 trust_mok_list;
 extern UINT8 mok_policy;
+
+extern EFI_DXE_SERVICES_TABLE *dxe_services_table;
 
 extern UINT8 in_protocol;
 extern void *load_options;

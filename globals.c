@@ -34,4 +34,6 @@ UINT8 mok_policy = 0;
 
 UINT32 verbose = 0;
 
+EFI_DXE_SERVICES_TABLE *dxe_services_table = NULL;
+
 // vim:fenc=utf-8:tw=75:noet
