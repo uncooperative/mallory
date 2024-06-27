@@ -966,10 +966,21 @@ error:
 		hsi_status = SHIM_HSI_STATUS_HEAPX |
 			     SHIM_HSI_STATUS_STACKX |
 			     SHIM_HSI_STATUS_ROW;
-		return;
+	} else {
+		hsi_status = SHIM_HSI_STATUS_HASMAP;
 	}
 
-	hsi_status = SHIM_HSI_STATUS_HASMAP;
+	if (dxe_services_table) {
+		hsi_status |= SHIM_HSI_STATUS_HASDST;
+		if (dxe_services_table->GetMemorySpaceDescriptor)
+			hsi_status |= SHIM_HSI_STATUS_HASDSTGMSD;
+		if (dxe_services_table->SetMemorySpaceAttributes)
+			hsi_status |= SHIM_HSI_STATUS_HASDSTSMSA;
+	}
+
+	if (!(hsi_status & SHIM_HSI_STATUS_HASMAP))
+		return;
+
 	if (attrs & MEM_ATTR_W) {
 		hsi_status |= SHIM_HSI_STATUS_ROW;
 	}
